@@ -1,0 +1,53 @@
+{
+  "name": "alan-turring-life-and-ai-foundations",
+  "description": "A structured exploration model for Alan Turring's life and his influence on the foundations of artificial intelligence.",
+  "focus": [
+    "childhood and education",
+    "wartime codebreaking and Bletchley Park",
+    "the Turring machine and computability",
+    "the imitation game and machine intelligence",
+    "legacy, ethics, and modern AI"
+  ],
+  "chapters": [
+    {
+      "title": "Early curiosity",
+      "theme": "education and mathematical insight",
+      "questions": [
+        "How did Turring's childhood interests shape his later thinking?",
+        "What made his mathematical approach distinct?"
+      ]
+    },
+    {
+      "title": "War and secrecy",
+      "theme": "codebreaking and the pressure of global conflict",
+      "questions": [
+        "How did Turring contribute to wartime cryptanalysis?",
+        "How did secrecy influence the public understanding of his work?"
+      ]
+    },
+    {
+      "title": "The machine concept",
+      "theme": "computation and the Turring machine",
+      "questions": [
+        "What problem was the Turring machine designed to solve?",
+        "Why is it still central to modern computer science?"
+      ]
+    },
+    {
+      "title": "The imitation game",
+      "theme": "intelligence and the birth of AI thinking",
+      "questions": [
+        "What was the imitation game trying to test?",
+        "How did it change the discussion around machine intelligence?"
+      ]
+    },
+    {
+      "title": "Legacy and reflection",
+      "theme": "history, recognition, and ethical impact",
+      "questions": [
+        "How should Turring's life be remembered today?",
+        "What lessons from his work still shape AI research?"
+      ]
+    }
+  ]
+}

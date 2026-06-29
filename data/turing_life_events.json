@@ -1,0 +1,50 @@
+[
+  {
+    "year": 1936,
+    "title": "The 1936 paper on computability",
+    "category": "conceptual milestone",
+    "summary": "Turing introduced the idea of the universal machine and connected computation with formal logic.",
+    "significance": "This paper laid the conceptual groundwork for modern computing and later AI.",
+    "keywords": ["computability", "universal machine", "logic"]
+  },
+  {
+    "year": 1939,
+    "title": "Bletchley Park and Enigma",
+    "category": "wartime work",
+    "summary": "Turing joined the effort to break Enigma messages during the Second World War.",
+    "significance": "His work helped shorten the war and showed how computation could be used for strategic problem-solving.",
+    "keywords": ["Bletchley Park", "Enigma", "codebreaking"]
+  },
+  {
+    "year": 1942,
+    "title": "The Bombe and machine-assisted cryptanalysis",
+    "category": "technical innovation",
+    "summary": "Turing helped design and improve the Bombe, a machine that sped up the search for Enigma settings.",
+    "significance": "This was an early example of using engineered machines to solve complex reasoning tasks.",
+    "keywords": ["Bombe", "cryptanalysis", "automation"]
+  },
+  {
+    "year": 1945,
+    "title": "The ACE design proposal",
+    "category": "computing vision",
+    "summary": "Turing proposed the Automatic Computing Engine, outlining a programmable machine with broad potential.",
+    "significance": "It reflected his belief that computers could support general-purpose problem solving beyond arithmetic.",
+    "keywords": ["ACE", "programmable computing", "design"]
+  },
+  {
+    "year": 1950,
+    "title": "The imitation game paper",
+    "category": "philosophical question",
+    "summary": "Turing asked whether machines could think and proposed the imitation game as a test.",
+    "significance": "This paper became a foundational reference point for debates about machine intelligence and AI.",
+    "keywords": ["imitation game", "machine intelligence", "AI"]
+  },
+  {
+    "year": 1952,
+    "title": "Later life and public persecution",
+    "category": "legacy and consequence",
+    "summary": "After the criminal conviction and social consequences, Turing's later years were marked by both isolation and scientific influence.",
+    "significance": "His life illustrates how intellectual achievement and social justice are deeply intertwined.",
+    "keywords": ["legacy", "ethics", "persecution"]
+  }
+]

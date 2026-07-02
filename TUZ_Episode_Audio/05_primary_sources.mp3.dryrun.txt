@@ -1,0 +1,3 @@
+DRY RUN: Would generate audio for 'Primary Sources Teaching Moment'
+
+Kids, before we finish, I want to teach you something really important about history.  The stories you just heard didn’t come from me making things up. They come from what people who were actually there said or wrote. These are called primary sources.  A primary source is like a diary, a letter, a treaty, or a story told by someone who lived through the moment. It’s the closest thing we have to he

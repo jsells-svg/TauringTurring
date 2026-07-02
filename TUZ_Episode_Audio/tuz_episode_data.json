@@ -1,0 +1,86 @@
+{
+  "episode_title": "The Landscapes We Loved",
+  "series": "The TUZ Podcast (The Understanding Zone)",
+  "target_runtime_minutes": "8.5-9.5",
+  "created": "2026-07-02T15:46:15.692700",
+  "tone": "Warm, respectful, healing-focused for ages 11-12",
+  "includes_senate_resolution": "S.Res.795 (119th Congress) - 150th anniversary of the Battle of the Little Bighorn",
+  "sections": [
+    {
+      "id": 1,
+      "character": "Uncle Billy Bobby",
+      "section_name": "Opening & Introduction",
+      "text": "Hello everyone, and welcome back to The TUZ Podcast — The Understanding Zone. I’m Uncle Billy Bobby.\n\nToday we’re going on a special journey. We’re going to hear from three very different people about the lands they loved — the places they called home.\n\nBefore we talk about battles, I want you kids listening to understand something important: You can’t understand why someone fights unless you understand what they were fighting for.\n\nSo today, we’re going to close our eyes and picture the landscapes these warriors came from.\n\nCrazy Horse, when you think about the Black Hills — the land you and your people fought so hard to protect — what do you see?",
+      "voice_id": "VqiwrUrQJKczyU1MS5vg",
+      "visual_cue": "Start with Campfire Gathering Scene - wide shot of all characters",
+      "filename": "01_uncle_opening.mp3"
+    },
+    {
+      "id": 2,
+      "character": "Crazy Horse",
+      "section_name": "Black Hills Description",
+      "text": "I see pine trees growing so thick and dark that when you look at the mountains from far away, they almost look black. That is why we call them Paha Sapa — the Black Hills.\n\nI remember the smell of damp earth after rain, the sharp scent of fresh pine needles, and the sound of clear mountain rivers rushing over rocks.\n\nTo the Lakota people, these hills were not just beautiful. They were sacred. This was the place where we went to pray and have visions. It was where the animals lived that gave us food and clothing. It was where our ancestors were buried.\n\nLooking out at those mountains felt like looking at the face of someone you love deeply. When someone tries to take that away, it is not just land they are taking — it is part of your heart and your people’s story.",
+      "voice_id": "EtiV9lg8uhb7wRBxC951",
+      "visual_cue": "Black Hills / Paha Sapa landscape - gentle zoom on pines and river",
+      "filename": "02_crazy_horse.mp3"
+    },
+    {
+      "id": 3,
+      "character": "Shaka Zulu",
+      "section_name": "Zulu Kingdom Description",
+      "text": "Our land was a place of a thousand green hills that rolled across the earth like waves on a great ocean. The grass grew tall and sweet — perfect for our cattle to graze.\n\nIn the early mornings, a thick white mist would wrap itself around the mountain peaks like a warm blanket. Then the sun would rise and cut through the mist with golden light.\n\nWe built our villages, which we called kraals, in circles on the ridges of those hills. The land gave us everything. It gave us wood to make our shields and spears. It gave us iron from the soil.\n\nWhen our warriors ran across those hills, it felt like the earth itself was beating like a strong heart beneath their feet.\n\nWe did not just live on the land. We were part of it. It shaped who we were as a people.",
+      "voice_id": "nJK37ElyErqJgioY8YUd",
+      "visual_cue": "Zulu Kingdom rolling green hills with morning mist and kraal",
+      "filename": "03_shaka_zulu.mp3"
+    },
+    {
+      "id": 4,
+      "character": "General Custer",
+      "section_name": "American West Perspective",
+      "text": "To us, those vast plains and rolling hills represented opportunity and the future of our growing nation.\n\nWe saw wide, open grasslands that could one day become farms and towns for American families moving westward. We believed it was our duty to help explore and protect this new frontier.\n\nThe Black Hills, in particular, were seen as a place of great promise because of the gold discovered there. We viewed the land as something that could help build a stronger, larger country.\n\nMany of us felt we were part of an important mission — opening up new opportunities for settlers and helping the United States grow.",
+      "voice_id": "BJFYIzIjujHHbSVejRJn",
+      "visual_cue": "Wide shot of American plains / Black Hills from frontier perspective",
+      "filename": "04_custer.mp3"
+    },
+    {
+      "id": 5,
+      "character": "Uncle Billy Bobby",
+      "section_name": "Primary Sources Teaching Moment",
+      "text": "Kids, before we finish, I want to teach you something really important about history.\n\nThe stories you just heard didn’t come from me making things up. They come from what people who were actually there said or wrote. These are called primary sources.\n\nA primary source is like a diary, a letter, a treaty, or a story told by someone who lived through the moment. It’s the closest thing we have to hearing their real voice.\n\nWhen we look at primary sources, we can better understand why someone loved their land so much, or why someone else saw it as a new beginning.\n\nThis helps us heal. It helps us see that everyone had reasons that made sense to them. And when we understand each other better, we can respect one another more — even when we disagree.\n\nThis year, in 2026, the United States Senate passed a resolution commemorating the 150th anniversary of these events. It shows that people are still thinking about this history and trying to understand it from many different sides — just like we’re doing today.\n\nThat’s why primary sources are so powerful. They let the people who lived the story speak for themselves.",
+      "voice_id": "VqiwrUrQJKczyU1MS5vg",
+      "visual_cue": "Return to warm campfire scene with all characters",
+      "filename": "05_primary_sources.mp3"
+    },
+    {
+      "id": 6,
+      "character": "Uncle Billy Bobby",
+      "section_name": "Closing & Reflection",
+      "text": "Thank you to Crazy Horse, Shaka Zulu, and General Custer for helping us see these landscapes through their eyes.\n\nRemember, the next time you hear about history or see a place on a map, try to imagine what that land might have meant to the people who lived there.\n\nHome isn’t just a spot on the ground — it’s the stories, the memories, and the love people have for it.\n\nThanks for listening to The TUZ Podcast. I’m Uncle Billy Bobby.\n\nKeep exploring, keep asking questions, and remember to respect everyone’s story.",
+      "voice_id": "VqiwrUrQJKczyU1MS5vg",
+      "visual_cue": "Final wide shot of campfire - slow fade out",
+      "filename": "06_uncle_closing.mp3"
+    }
+  ],
+  "primary_sources": [
+    {
+      "title": "Fort Laramie Treaty of 1868",
+      "link": "https://www.archives.gov/milestone-documents/fort-laramie-treaty",
+      "description": "The actual treaty document about the Black Hills"
+    },
+    {
+      "title": "Letters by General Custer",
+      "link": "https://www.rochestervoices.org/collections/george-a-custer-letters/",
+      "description": "Original letters written by Custer"
+    },
+    {
+      "title": "S.Res.795 - 150th Anniversary Resolution",
+      "link": "https://congress.gov/bill/119-congress/senate-resolution/795",
+      "description": "U.S. Senate resolution commemorating the 150th anniversary of the Battle of the Little Bighorn (passed June 2026)"
+    },
+    {
+      "title": "Understanding Primary Sources",
+      "link": "https://www.loc.gov/programs/teachers/getting-started-with-primary-sources/",
+      "description": "Library of Congress guide for students"
+    }
+  ]
+}

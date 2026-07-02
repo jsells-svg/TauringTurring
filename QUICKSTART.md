@@ -25,6 +25,40 @@ dist\TuringInteractive.exe
 dist\TuringInteractive.exe --tts
 ```
 
+## Generating Episode Audio (TUZ Podcast)
+
+The repository includes `GenerateAudioFromScripttoElevenLabs.py` to generate segmented audio files and a combined episode MP3 using ElevenLabs TTS.
+
+Environment variables required for real generation:
+- `ELEVENLABS_API_KEY` or `XI_API_KEY` — your ElevenLabs API key
+- `UNCLE_BILLY_VOICE_ID` — ElevenLabs voice ID for Uncle Billy Bobby
+- `CRAZY_HORSE_VOICE_ID` — ElevenLabs voice ID for Crazy Horse
+- `SHAKA_ZULU_VOICE_ID` — ElevenLabs voice ID for Shaka Zulu
+- `CUSTER_VOICE_ID` — ElevenLabs voice ID for General Custer
+
+Set these in PowerShell before running the script:
+```powershell
+$env:ELEVENLABS_API_KEY = 'sk-1234567890abcdef'
+$env:UNCLE_BILLY_VOICE_ID = 'voice-id-uncle-billy'
+$env:CRAZY_HORSE_VOICE_ID = 'voice-id-crazy-horse'
+$env:SHAKA_ZULU_VOICE_ID = 'voice-id-shaka-zulu'
+$env:CUSTER_VOICE_ID = 'voice-id-custer'
+```
+
+Dry-run (no API keys required):
+```powershell
+python GenerateAudioFromScripttoElevenLabs.py --dry-run
+```
+
+Real generation (requires API keys and voice IDs). For safety the script refuses to run live calls unless `--force` is supplied. You can tune retry/backoff behavior:
+```powershell
+python GenerateAudioFromScripttoElevenLabs.py --force --retries 3 --backoff 1.0
+```
+
+Output:
+- Generated MP3 clips and `tuz_episode_data.json` are written to the `TUZ_Episode_Audio/` folder.
+- A combined episode file `TUZ_Podcast_Landscapes_We_Loved.mp3` will be created when real MP3 clips exist.
+
 ## What to Expect
 
 When you run the application, you'll see:

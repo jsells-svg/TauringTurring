@@ -1,32 +1,42 @@
 import os
+import shutil
+import subprocess
+import tempfile
 import sys
-import requests
-from pydub import AudioSegment
+import time
+
+try:
+    from pydub import AudioSegment
+except ImportError:
+    AudioSegment = None
 
 # ====================== CONFIG ======================
 # Provide your ElevenLabs API key via the environment variable
 # `ELEVENLABS_API_KEY` or `XI_API_KEY`.
-API_KEY = os.getenv("ELEVENLABS_API_KEY") or os.getenv("XI_API_KEY")
-
-if not API_KEY:
-    # don't exit immediately when imported — only when run as script
-    pass
+#
+# Also configure voice IDs for each speaker in the example runner via
+# `UNCLE_BILLY_VOICE_ID`, `CRAZY_HORSE_VOICE_ID`, and `SHAKA_ZULU_VOICE_ID`.
+def get_api_key():
+    return os.getenv("ELEVENLABS_API_KEY") or os.getenv("XI_API_KEY")
 
 # ====================== FUNCTIONS ======================
 
-def generate_audio(text, voice_id, filename):
+def generate_audio(text, voice_id, filename, retries: int = 3, backoff_factor: float = 1.0):
     """Generate an MP3 from `text` using ElevenLabs voice `voice_id`.
 
-    Saves output to `filename`.
+    Retries on transient errors (429, 5xx). Saves output to `filename`.
     """
-    if not API_KEY:
+    api_key = get_api_key()
+    if not api_key:
         raise RuntimeError("ELEVENLABS API key not set in ELEVENLABS_API_KEY or XI_API_KEY")
+
+    import requests
 
     url = f"https://api.elevenlabs.io/v1/text-to-speech/{voice_id}"
     headers = {
         "Accept": "audio/mpeg",
         "Content-Type": "application/json",
-        "xi-api-key": API_KEY,
+        "xi-api-key": api_key,
     }
     data = {
         "text": text,
@@ -39,22 +49,90 @@ def generate_audio(text, voice_id, filename):
         },
     }
 
-    try:
-        response = requests.post(url, json=data, headers=headers, timeout=60)
-    except Exception as e:
-        print(f"❌ Error requesting TTS: {e}")
+    attempt = 1
+    while attempt <= max(1, retries):
+        try:
+            response = requests.post(url, json=data, headers=headers, timeout=60)
+        except Exception as e:
+            if attempt < retries:
+                wait = backoff_factor * (2 ** (attempt - 1))
+                print(f"⚠️ Request error (attempt {attempt}/{retries}): {e}. Retrying in {wait:.1f}s...")
+                time.sleep(wait)
+                attempt += 1
+                continue
+            else:
+                print(f"❌ Error requesting TTS after {attempt} attempts: {e}")
+                return False
+
+        status = response.status_code
+        if status == 200:
+            with open(filename, "wb") as f:
+                f.write(response.content)
+            print(f"✅ Generated: {filename}")
+            return True
+
+        # Retry on rate limit or server errors
+        if status == 429 or 500 <= status < 600:
+            if attempt < retries:
+                wait = backoff_factor * (2 ** (attempt - 1))
+                body = response.text[:300]
+                print(f"⚠️ Transient HTTP {status} (attempt {attempt}/{retries}): {body}. Retrying in {wait:.1f}s...")
+                time.sleep(wait)
+                attempt += 1
+                continue
+            else:
+                body = response.text[:800]
+                print(f"❌ Error generating {filename}: HTTP {status} - {body}")
+                return False
+
+        # Permanent client error
+        body = response.text[:800]
+        print(f"❌ Error generating {filename}: HTTP {status} - {body}")
         return False
 
-    if response.status_code == 200:
-        with open(filename, "wb") as f:
-            f.write(response.content)
-        print(f"✅ Generated: {filename}")
-        return True
-    else:
-        # Show response body for debugging when available
-        body = response.text[:400]
-        print(f"❌ Error generating {filename}: {response.status_code} - {body}")
-        return False
+
+def _join_mp3_with_ffmpeg(file_list, output_filename):
+    """Concatenate MP3 files using ffmpeg if pydub is unavailable."""
+    # ffmpeg-python may not be installed or may not see a working binary.
+    # Use imageio_ffmpeg binary if available, or fallback to system ffmpeg.
+    try:
+        import imageio_ffmpeg
+        ffmpeg_path = imageio_ffmpeg.get_ffmpeg_exe()
+    except Exception:
+        ffmpeg_path = shutil.which("ffmpeg")
+
+    if not ffmpeg_path or not os.path.isfile(ffmpeg_path):
+        raise RuntimeError(
+            "ffmpeg is required for MP3 combination. Install ffmpeg or configure imageio-ffmpeg."
+        )
+
+    with tempfile.TemporaryDirectory() as tmpdir:
+        list_path = os.path.join(tmpdir, "inputs.txt")
+        with open(list_path, "w", encoding="utf-8") as f:
+            for file in file_list:
+                path = os.path.abspath(file)
+                path = path.replace("'", "'\\''")
+                f.write(f"file '{path}'\n")
+
+        cmd = [
+            ffmpeg_path,
+            "-f",
+            "concat",
+            "-safe",
+            "0",
+            "-i",
+            list_path,
+            "-c",
+            "copy",
+            output_filename,
+        ]
+        result = subprocess.run(cmd, capture_output=True, text=True)
+        if result.returncode != 0:
+            raise RuntimeError(
+                f"ffmpeg concat failed: {result.returncode}\n{result.stderr.strip()}"
+            )
+
+    print(f"Successfully created combined file: {output_filename}")
 
 
 def combine_into_one_mp3(file_list, output_filename, silence_ms=300):
@@ -62,19 +140,25 @@ def combine_into_one_mp3(file_list, output_filename, silence_ms=300):
 
     `file_list` should be a list of file paths to MP3 files.
     """
-    combined = AudioSegment.empty()
+    if AudioSegment is not None:
+        combined = AudioSegment.empty()
 
-    for i, file in enumerate(file_list):
-        audio = AudioSegment.from_mp3(file)
-        combined += audio
+        for i, file in enumerate(file_list):
+            audio = AudioSegment.from_mp3(file)
+            combined += audio
 
-        # Add a short silence after each clip except the last
-        if i < len(file_list) - 1:
-            combined += AudioSegment.silent(duration=silence_ms)
+            # Add a short silence after each clip except the last
+            if i < len(file_list) - 1:
+                combined += AudioSegment.silent(duration=silence_ms)
 
-    combined.export(output_filename, format="mp3")
-    print(f"🎉 Successfully created combined file: {output_filename}")
-    print(f" Total length: {len(combined) / 1000:.1f} seconds")
+        combined.export(output_filename, format="mp3")
+        print(f"🎉 Successfully created combined file: {output_filename}")
+        print(f" Total length: {len(combined) / 1000:.1f} seconds")
+        return
+
+    # Fallback: try ffmpeg concat if pydub is unavailable
+    print("pydub not available; falling back to ffmpeg concat.")
+    _join_mp3_with_ffmpeg(file_list, output_filename)
 
 
 # ====================== MAIN EXECUTION ======================

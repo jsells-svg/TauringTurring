@@ -1,0 +1,17 @@
+{
+  "voice_ids": {
+    "uncle_billy": "your_uncle_billy_voice_id",
+    "crazy_horse": "your_crazy_horse_voice_id",
+    "shaka_zulu": "your_shaka_zulu_voice_id"
+  },
+  "texts": {
+    "uncle_opening": "Uncle Billy opens the episode with a short intro.",
+    "crazy_horse": "Crazy Horse speaks about the plains.",
+    "shaka_zulu": "Shaka Zulu recounts a battle.",
+    "uncle_closing": "Uncle Billy closes the episode."
+  },
+  "output": {
+    "combined_filename": "TUZ_Podcast_Landscapes_We_Loved.mp3",
+    "silence_ms": 400
+  }
+}

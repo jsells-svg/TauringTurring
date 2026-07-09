@@ -1,0 +1,3 @@
+DRY RUN: Would generate audio for 'Jules Brunet'
+
+Text preview: (small smile) I already did, Emperor. You just didn't listen....

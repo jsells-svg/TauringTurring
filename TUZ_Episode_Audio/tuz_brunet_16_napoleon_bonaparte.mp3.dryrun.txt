@@ -1,0 +1,3 @@
+DRY RUN: Would generate audio for 'Napoleon Bonaparte'
+
+Text preview: (watching him go) Interesting man. I may have to recruit him in another timeline....

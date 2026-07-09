@@ -1,0 +1,3 @@
+DRY RUN: Would generate audio for 'Napoleon Bonaparte'
+
+Text preview: (leaning forward, intrigued) You defied your emperor. I defied kings. There is a price....

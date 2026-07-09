@@ -1,0 +1,8 @@
+{
+  "voices": {
+    "UNCLE BILLY BOBBY": "your_uncle_billy_voice_id",
+    "CRAZY HORSE": "your_crazy_horse_voice_id",
+    "SHAKA ZULU": "your_shaka_zulu_voice_id",
+    "GENERAL CUSTER": "your_custer_voice_id"
+  }
+}

@@ -61,11 +61,14 @@ To rebuild the standalone executable after making changes:
 
 ## Eleven Labs audio and secure key handling
 
-This project can make audio using Eleven Labs. There are two scripts for this:
+This project can make audio using Eleven Labs. There are three scripts for this:
 
 - `eleven_api.py` — a helper function for single text-to-speech calls.
 - `generate_video.py` — makes audio for the timeline and creates `Turring_Timeline.mp4`.
 - `GenerateAudioFromScripttoElevenLabs.py` — makes several clips and combines them into one MP3 from a simple config file.
+- `GenerateScreenplayToVideo.py` — generates a narrated MP4 from a screenplay-style text file using Eleven Labs.
+
+You can paste your screenplay into `screenplay_example.txt` or provide any other text file path with `--screenplay`.
 
 ### Why this is safe
 

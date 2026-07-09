@@ -59,6 +59,21 @@ Output:
 - Generated MP3 clips and `tuz_episode_data.json` are written to the `TUZ_Episode_Audio/` folder.
 - A combined episode file `TUZ_Podcast_Landscapes_We_Loved.mp3` will be created when real MP3 clips exist.
 
+## Generating Video from a Screenplay
+The repository also includes `GenerateScreenplayToVideo.py` for turning a screenplay-style text file into a narrated MP4 using Eleven Labs.
+
+Example usage:
+```powershell
+$env:ELEVENLABS_API_KEY = 'sk-1234567890abcdef'
+python GenerateScreenplayToVideo.py --screenplay screenplay_example.txt --out screenplay_video.mp4 --voice alloy
+```
+
+Paste your screenplay into `screenplay_example.txt` using the sample format below. Replace the sample character lines with your own dialogue and scene headings.
+
+To use character-specific voices, create a JSON voice map file and pass it with `--voice-map screenplay_voice_map_example.json`.
+
+If you want specific voices for characters, provide a voice map JSON file like `screenplay_voice_map_example.json`.
+
 ## What to Expect
 
 When you run the application, you'll see:

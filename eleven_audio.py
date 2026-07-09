@@ -5,6 +5,8 @@ import tempfile
 import sys
 import time
 
+import requests
+
 try:
     from pydub import AudioSegment
 except ImportError:
@@ -29,8 +31,6 @@ def generate_audio(text, voice_id, filename, retries: int = 3, backoff_factor: f
     api_key = get_api_key()
     if not api_key:
         raise RuntimeError("ELEVENLABS API key not set in ELEVENLABS_API_KEY or XI_API_KEY")
-
-    import requests
 
     url = f"https://api.elevenlabs.io/v1/text-to-speech/{voice_id}"
     headers = {

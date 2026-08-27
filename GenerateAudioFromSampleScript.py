@@ -9,14 +9,20 @@ from eleven_audio import generate_audio, combine_into_one_mp3
 
 # ====================== CONFIGURATION ======================
 UNCLE_BILLY_VOICE_ID = os.getenv("UNCLE_BILLY_VOICE_ID", "YOUR_UNCLE_BILLY_VOICE_ID")
-JULES_BRUNET_VOICE_ID = os.getenv("JULES_BRUNET_VOICE_ID", "YOUR_JULES_BRUNET_VOICE_ID")
-NAPOLEON_VOICE_ID = os.getenv("NAPOLEON_VOICE_ID", "YOUR_NAPOLEON_VOICE_ID")
+GUEST_1_VOICE_ID = os.getenv("GUEST_1_VOICE_ID", "YOUR_GUEST_1_VOICE_ID")
+GUEST_2_VOICE_ID = os.getenv("GUEST_2_VOICE_ID", "YOUR_GUEST_2_VOICE_ID")
 
 PLACEHOLDER_VOICE_IDS = {
     "YOUR_UNCLE_BILLY_VOICE_ID",
-    "YOUR_JULES_BRUNET_VOICE_ID",
-    "YOUR_NAPOLEON_VOICE_ID",
+    "YOUR_GUEST_1_VOICE_ID",
+    "YOUR_GUEST_2_VOICE_ID",
 }
+
+ACTION_LINE_PATTERN = re.compile(
+    r"^(?:Billy Bobby|Harriet Tubman|Winston Churchill)\s+"
+    r"(?:gestures|looks|nods|turns|leans|sits|stands|walks|smiles|pauses)\b",
+    re.IGNORECASE,
+)
 
 OUTPUT_FOLDER = "TUZ_Episode_Audio"
 os.makedirs(OUTPUT_FOLDER, exist_ok=True)
@@ -35,89 +41,78 @@ episode_data = {
 
 # ====================== PARSE SCRIPT ======================
 
-def parse_samplescript():
+CHARACTER_VOICE_IDS = {
+    "UNCLE BILLY BOBBY": ("Uncle Billy Bobby", UNCLE_BILLY_VOICE_ID, "uncle_billy_bobby"),
+    "HARRIET TUBMAN": ("Harriet Tubman", GUEST_1_VOICE_ID, "harriet_tubman"),
+    "WINSTON CHURCHILL": ("Winston Churchill", GUEST_2_VOICE_ID, "winston_churchill"),
+}
+
+
+def parse_samplescript(script_path="samplescript.txt"):
     """
     Parse samplescript.txt and extract dialogue by character.
     Uses regex to find CHARACTER NAME followed by dialogue.
     Returns a list of dicts with character, text, and metadata.
     """
-    with open("samplescript.txt", "r", encoding="utf-8") as f:
-        content = f.read()
-    
+    with open(script_path, "r", encoding="utf-8") as f:
+        lines = f.readlines()
+
+    parsed_sections = []
+    current_character = None
+    current_dialogue = []
+
+    def flush_section():
+        if current_character is None:
+            return
+        dialogue = "\n".join(current_dialogue).strip()
+        if len(dialogue) > 10:
+            parsed_sections.append((current_character, dialogue))
+
+    for raw_line in lines:
+        line = raw_line.strip()
+        normalized_line = re.sub(r"^\*{1,2}|\*{1,2}$", "", line).strip()
+        speaker = CHARACTER_VOICE_IDS.get(normalized_line.upper())
+
+        if speaker:
+            flush_section()
+            current_character = speaker
+            current_dialogue = []
+            continue
+
+        if current_character is None:
+            continue
+        if not line or line.startswith("(") or line.startswith("**"):
+            continue
+        if normalized_line.upper() in {"FADE OUT.", "SCENE END", "---"}:
+            flush_section()
+            current_character = None
+            current_dialogue = []
+            continue
+        if ACTION_LINE_PATTERN.match(line):
+            continue
+        current_dialogue.append(line)
+
+    flush_section()
+
     sections = []
-    section_id = 1
-    
-    # Use regex to find all character dialogue patterns
-    # Pattern: CHARACTER NAME (optional stage direction) followed by dialogue until next character
-    
-    # Find all Uncle Billy Bobby dialogue
-    uncle_billy_pattern = r"UNCLE BILLY BOBBY(?:\s*\([^)]*\))?\s+([^A-Z][^(]*?)(?=(?:BRUNET|NAPOLEON|He|She|They|CUT|INT\.|EXT\.|FADE|END OF))"
-    uncle_matches = re.finditer(uncle_billy_pattern, content, re.DOTALL)
-    
-    for match in uncle_matches:
-        dialogue = match.group(1).strip()
-        if dialogue and len(dialogue) > 10:  # Filter out very short/empty matches
-            section = {
-                "id": section_id,
-                "character": "Uncle Billy Bobby",
-                "section_name": f"Uncle Billy Bobby - Section {section_id}",
-                "text": dialogue,
-                "voice_id": UNCLE_BILLY_VOICE_ID,
-                "filename": f"tuz_brunet_{section_id:02d}_uncle_billy.mp3"
-            }
-            sections.append(section)
-            section_id += 1
-    
-    # Find all Brunet dialogue
-    brunet_pattern = r"BRUNET(?:\s*\([^)]*\))?\s+([^A-Z][^(]*?)(?=(?:UNCLE BILLY|NAPOLEON|He|She|They|CUT|INT\.|EXT\.|FADE|END OF))"
-    brunet_matches = re.finditer(brunet_pattern, content, re.DOTALL)
-    
-    for match in brunet_matches:
-        dialogue = match.group(1).strip()
-        if dialogue and len(dialogue) > 10:
-            section = {
-                "id": section_id,
-                "character": "Jules Brunet",
-                "section_name": f"Jules Brunet - Section {section_id}",
-                "text": dialogue,
-                "voice_id": JULES_BRUNET_VOICE_ID,
-                "filename": f"tuz_brunet_{section_id:02d}_jules_brunet.mp3"
-            }
-            sections.append(section)
-            section_id += 1
-    
-    # Find all Napoleon dialogue
-    napoleon_pattern = r"NAPOLEON(?:\s*\([^)]*\))?\s+([^A-Z][^(]*?)(?=(?:BRUNET|UNCLE BILLY|He|She|They|CUT|INT\.|EXT\.|FADE|END OF))"
-    napoleon_matches = re.finditer(napoleon_pattern, content, re.DOTALL)
-    
-    for match in napoleon_matches:
-        dialogue = match.group(1).strip()
-        if dialogue and len(dialogue) > 10:
-            section = {
-                "id": section_id,
-                "character": "Napoleon Bonaparte",
-                "section_name": f"Napoleon Bonaparte - Section {section_id}",
-                "text": dialogue,
-                "voice_id": NAPOLEON_VOICE_ID,
-                "filename": f"tuz_brunet_{section_id:02d}_napoleon.mp3"
-            }
-            sections.append(section)
-            section_id += 1
-    
-    # Sort sections by their appearance in the document to maintain chronological order
-    sections.sort(key=lambda s: content.find(s["text"]))
-    
-    # Re-assign IDs after sorting
-    for i, section in enumerate(sections, 1):
-        section["id"] = i
-        section["filename"] = f"tuz_brunet_{i:02d}_{section['character'].lower().replace(' ', '_')}.mp3"
-    
+    for section_id, (speaker, dialogue) in enumerate(parsed_sections, 1):
+        character, voice_id, filename_stem = speaker
+        sections.append({
+            "id": section_id,
+            "character": character,
+            "section_name": f"{character} - Section {section_id}",
+            "text": dialogue,
+            "voice_id": voice_id,
+            "filename": f"tuz_brunet_{section_id:02d}_{filename_stem}.mp3",
+        })
+
     return sections
 
 # ====================== MAIN EXECUTION ======================
 
 def main(dry_run: bool = False, force: bool = False, retries: int = 3, backoff: float = 1.0):
     print("Generating TUZ Episode Audio from samplescript.txt...\n")
+    episode_data["sections"] = []
     
     try:
         sections = parse_samplescript()
@@ -178,8 +173,10 @@ def main(dry_run: bool = False, force: bool = False, retries: int = 3, backoff: 
         json.dump(episode_data, f, indent=2, ensure_ascii=False)
     print(f"\n[INFO] JSON data saved: {json_path}")
     
-    # Optionally combine generated clips into one episode MP3
-    combined_path = os.path.join(OUTPUT_FOLDER, "TUZ_Podcast_Jules_Brunet.mp3")
+    # Optionally combine generated clips into a timestamped episode MP3
+    timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+    combined_filename = f"TUZHorizonLine_{timestamp}.mp3"
+    combined_path = os.path.join(OUTPUT_FOLDER, combined_filename)
     real_audio_files = [p for p in generated_files if p.endswith('.mp3')]
     if real_audio_files:
         try:

@@ -2,7 +2,7 @@
   "episode_title": "Jules Brunet: The French Samurai",
   "series": "The TUZ Podcast (The Timeline Unification Zone)",
   "target_runtime_minutes": "12-15",
-  "created": "2026-08-26T10:32:42.977353",
+  "created": "2026-08-26T10:56:56.467850",
   "tone": "Thoughtful, historical, philosophical",
   "themes": [
     "Honor across cultures",
@@ -10,5 +10,14 @@
     "Art as legacy",
     "Timelines and history"
   ],
-  "sections": []
+  "sections": [
+    {
+      "id": 1,
+      "character": "Uncle Billy Bobby",
+      "section_name": "Uncle Billy Bobby - Section 1",
+      "text": "(Nodding)\nAcknowledge the history. Share the light. Starve the toxic media narratives through unified defiance.\n\nBilly Bobby looks directly into the camera.\n\nUNCLE BILLY BOBBY\nIf a Prime Minister and the Moses of her people can agree on the playbook, I think our modern sports fans and media can figure it out. That’s all for today on *Horizon Line*.\n\n**",
+      "voice_id": "VqiwrUrQJKczyU1MS5vg",
+      "filename": "tuz_brunet_01_uncle_billy_bobby.mp3"
+    }
+  ]
 }

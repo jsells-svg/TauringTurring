@@ -2,7 +2,7 @@
   "episode_title": "Jules Brunet: The French Samurai",
   "series": "The TUZ Podcast (The Timeline Unification Zone)",
   "target_runtime_minutes": "12-15",
-  "created": "2026-08-26T10:56:56.467850",
+  "created": "2026-08-27T07:53:40.608529",
   "tone": "Thoughtful, historical, philosophical",
   "themes": [
     "Honor across cultures",
@@ -15,9 +15,97 @@
       "id": 1,
       "character": "Uncle Billy Bobby",
       "section_name": "Uncle Billy Bobby - Section 1",
-      "text": "(Nodding)\nAcknowledge the history. Share the light. Starve the toxic media narratives through unified defiance.\n\nBilly Bobby looks directly into the camera.\n\nUNCLE BILLY BOBBY\nIf a Prime Minister and the Moses of her people can agree on the playbook, I think our modern sports fans and media can figure it out. That’s all for today on *Horizon Line*.\n\n**",
+      "text": "Welcome back to *The Noticer*, broadcasting live from the Timeline Unification Zone. I’m your host, Uncle Billy Bobby. Today, we’re tackling modern discord by looking backward. We’re looking at the WNBA—a league experiencing explosive growth, but grappling with deep racial tensions, media bias, and growing pains between veteran players and new stars.",
       "voice_id": "VqiwrUrQJKczyU1MS5vg",
       "filename": "tuz_brunet_01_uncle_billy_bobby.mp3"
+    },
+    {
+      "id": 2,
+      "character": "Uncle Billy Bobby",
+      "section_name": "Uncle Billy Bobby - Section 2",
+      "text": "To help us navigate this, I’ve brought in two people who know a little something about navigating life-or-death division. Harriet Tubman and Winston Churchill. Welcome to the TUZ.",
+      "voice_id": "VqiwrUrQJKczyU1MS5vg",
+      "filename": "tuz_brunet_02_uncle_billy_bobby.mp3"
+    },
+    {
+      "id": 3,
+      "character": "Harriet Tubman",
+      "section_name": "Harriet Tubman - Section 3",
+      "text": "Glad to be here, Billy. Though I’ll admit, where I come from, \"discord\" usually meant a bounty on your head. But pain is pain, and division is division, no matter the century.",
+      "voice_id": "BeKZH03brdNaVyYtd97H",
+      "filename": "tuz_brunet_03_harriet_tubman.mp3"
+    },
+    {
+      "id": 4,
+      "character": "Winston Churchill",
+      "section_name": "Winston Churchill - Section 4",
+      "text": "Quite. Though I must say, the concept of a \"podcast\" is rather quaint. Still, if we are to solve the squabbles of professional sportswomen... I suppose I can lend a strategic ear.",
+      "voice_id": "agL69Vji082CshT65Tcy",
+      "filename": "tuz_brunet_04_winston_churchill.mp3"
+    },
+    {
+      "id": 5,
+      "character": "Uncle Billy Bobby",
+      "section_name": "Uncle Billy Bobby - Section 5",
+      "text": "Let’s get right to it. The WNBA was built largely on the backs of Black women who played for decades with little pay and zero mainstream respect. Now, new players—specifically white players bringing massive media attention—have entered the chat. The resentment, the racial narratives in the media, the fan toxicity... it’s boiling over. Harriet, you led diverse groups of people to freedom. How do you keep the collective moving forward when resentment is brewing?",
+      "voice_id": "VqiwrUrQJKczyU1MS5vg",
+      "filename": "tuz_brunet_05_uncle_billy_bobby.mp3"
+    },
+    {
+      "id": 6,
+      "character": "Harriet Tubman",
+      "section_name": "Harriet Tubman - Section 6",
+      "text": "You acknowledge who built the road! Listen, you can’t have new folks riding the train without them paying respect to the conductors who laid the tracks in the dark. The WNBA is built on Black women's sweat. The media wants to act like the league just started yesterday. That erases history. You want unity? The new stars have to use their spotlight to illuminate the veterans. You shine the light back, or the whole house burns down from jealousy.",
+      "voice_id": "BeKZH03brdNaVyYtd97H",
+      "filename": "tuz_brunet_06_harriet_tubman.mp3"
+    },
+    {
+      "id": 7,
+      "character": "Winston Churchill",
+      "section_name": "Winston Churchill - Section 7",
+      "text": "A brilliant tactical maneuver, Madam Tubman. In politics and war, we call it securing the vanguard. If the new recruits do not honor the Old Guard, the army eats itself.",
+      "voice_id": "agL69Vji082CshT65Tcy",
+      "filename": "tuz_brunet_07_winston_churchill.mp3"
+    },
+    {
+      "id": 8,
+      "character": "Uncle Billy Bobby",
+      "section_name": "Uncle Billy Bobby - Section 8",
+      "text": "But Winston, the media is playing a huge role here. They’re pitting players against each other based on race to drive clicks and engagement. How do you fight a narrative that profits off your division?",
+      "voice_id": "VqiwrUrQJKczyU1MS5vg",
+      "filename": "tuz_brunet_08_uncle_billy_bobby.mp3"
+    },
+    {
+      "id": 9,
+      "character": "Winston Churchill",
+      "section_name": "Winston Churchill - Section 9",
+      "text": "You starve it. The press is a beast that feeds on controversy. If these women—these incredible athletes—allow the media to draft them into a fabricated race war, they will all lose. They must form an impenetrable coalition. When the press asks a divisive question, you answer with unified defiance. A rising tide lifts all boats, provided the crew stops attempting to sink one another in the harbor.",
+      "voice_id": "agL69Vji082CshT65Tcy",
+      "filename": "tuz_brunet_09_winston_churchill.mp3"
+    },
+    {
+      "id": 10,
+      "character": "Harriet Tubman",
+      "section_name": "Harriet Tubman - Section 10",
+      "text": "Exactly! It ain't just a game; it's about survival. The media is trying to divide and conquer. Women in that league need to lock arms. The veterans need to protect the rookies from the vitriol, and the rookies need to publicly credit the veterans. You don't survive the wilderness by fighting over who gets to hold the compass. You survive by making sure everybody makes it to the North Star.",
+      "voice_id": "BeKZH03brdNaVyYtd97H",
+      "filename": "tuz_brunet_10_harriet_tubman.mp3"
+    },
+    {
+      "id": 11,
+      "character": "Uncle Billy Bobby",
+      "section_name": "Uncle Billy Bobby - Section 11",
+      "text": "Acknowledge the history. Share the light. Starve the toxic media narratives through unified defiance.",
+      "voice_id": "VqiwrUrQJKczyU1MS5vg",
+      "filename": "tuz_brunet_11_uncle_billy_bobby.mp3"
+    },
+    {
+      "id": 12,
+      "character": "Uncle Billy Bobby",
+      "section_name": "Uncle Billy Bobby - Section 12",
+      "text": "If a Prime Minister and the Moses of her people can agree on the playbook, I think our modern sports fans and media can figure it out. That’s all for today on *The Noticer*.",
+      "voice_id": "VqiwrUrQJKczyU1MS5vg",
+      "filename": "tuz_brunet_12_uncle_billy_bobby.mp3"
     }
   ]
 }

@@ -217,7 +217,7 @@ def main(dry_run: bool = False, force: bool = False, retries: int = 3, backoff: 
 
     # Optionally combine generated clips into one episode MP3 (skip for dry-run placeholders)
     timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-    combined_filename = f"TUZHorizonLine_{timestamp}.mp3"
+    combined_filename = f"HorizonLine_{timestamp}.mp3"
     combined_path = os.path.join(OUTPUT_FOLDER, combined_filename)
     real_audio_files = [p for p in generated_files if p.endswith('.mp3')]
     if real_audio_files:
